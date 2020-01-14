@@ -14,17 +14,18 @@
     "redux": "4.0.1",
     "redux-logger": "3.0.6",
     "redux-persist": "5.10.0",
-    "reselect": "4.0.0"
+    "reselect": "4.0.0",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "react-scripts": "^3.3.0"
   },
   "resolutions": {},
   "scripts": {
-    "start": "react-scripts.js start" ,
-    "build": "react-scripts.js build" ,
-    "test" : "react-scripts.js test" ,
-    "eject": "react-scripts.js eject" 
+    "start": "node ./node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "node ./node_modules/react-scripts/bin/react-scripts.js build",
+    "test": "node ./node_modules/react-scripts/bin/react-scripts.js test",
+    "eject": "node ./node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "eslintConfig": {
     "extends": "react-app"
