@@ -16,12 +16,16 @@ import Header from './components/header/header.component';
 
 //import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import { checkUserSession }  from './redux/user/user.actions';
 /* import {selectCollectionsForPreview} from './redux/shop/shop.selectors' 
  */
 class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const {checkUserSession} = this.props;
+    checkUserSession();
+
   /*   const { setCurrentUser//,collectionsArray  
     } = this.props;
 
@@ -79,8 +83,12 @@ const mapStateToProps = createStructuredSelector({
 /* const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 }); */
+const mapDispatchToProps = dispatch =>({
+  checkUserSession : ()=>dispatch(checkUserSession())
+});
 
 export default connect(
-  mapStateToProps/* ,
+  mapStateToProps,
+  mapDispatchToProps/* ,
   mapDispatchToProps */
 )(App);

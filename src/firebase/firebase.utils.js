@@ -85,6 +85,18 @@ export const convertCollectionsSnapshotToMap = (collections)=>{
   },{});
 
 }
+// We should unsubscribe if we get the initial value
+// promise based for sagas
+// This promise will resolve the right auth 
+export const getCurrentUser = ()=>{
+  return new Promise ((resolve,reject)=>{
+    const unsubscribe = auth.onAuthStateChanged(userAuth=>{
+      unsubscribe();
+      resolve(userAuth);
+    },reject)
+});
+}
+
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
