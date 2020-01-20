@@ -99,14 +99,7 @@ export function* signUp({payload: {email,password,displayName}}){
                 password
                 );
        
-          yield createUserProfileDocument(user, displayName);
-  
-        /* this.setState({
-          displayName: '',
-          email: '',
-          password: '',
-          confirmPassword: ''
-        }); */
+        yield createUserProfileDocument(user, displayName);
         yield put(signUpSuccess({user,additionalData:{displayName}}));
     }catch(error) {
         yield put(signUpFailure(error));

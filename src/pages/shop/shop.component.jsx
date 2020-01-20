@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Route } from 'react-router-dom';
 import {connect} from 'react-redux';
 //import {createStructuredSelector} from 'reselect';
@@ -18,23 +18,25 @@ import WithSpinner from '../../components/with-spinner/with-spinner.component';
  */
 //const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 //const CollectionPageWithSpinner      = WithSpinner(CollectionPage);
+const ShopPage =({fetchCollectionsStart,match})=>{
+/* class  ShopPage extends React.Component{
 
-class  ShopPage extends React.Component{
-
-  /* state = {
+  */ /* state = {
     loading : true
   };
 
   unsubscribeFromSnapshot = null; */
-
-  componentDidMount(){
+useEffect(()=>{
+              fetchCollectionsStart()
+              },[fetchCollectionsStart]);
+  //componentDidMount(){
 
     // distruct the props to dispatch funct --fetchCollectionsStartAsync()
     // then  we call the funct
     /* const {fetchCollectionsStartAsync} = this.props;
     fetchCollectionsStartAsync(); */
-    const {fetchCollectionsStart} = this.props;
-    fetchCollectionsStart();
+   /*  const {fetchCollectionsStart} = this.props;
+    fetchCollectionsStart(); */
     /* const {updateCollections} = this.props;
     // fetcihing for the collection ref
     const collectionRef =firestore.collection('collections');
@@ -60,14 +62,14 @@ class  ShopPage extends React.Component{
       fetch('https://firestore.googleapis.com/v1/projects/crown-98d7f/databases/(default)/documents/collections')
       .then(response => response.json())
       .then(collections => console.log(collections)); */
-  };
+  //};
 
- render(){
+ //render(){
    
-   const {match/* ,isCollectionFetching ,isCollectionLoaded*/} =this.props;
+  // const {match/* ,isCollectionFetching ,isCollectionLoaded*/} =this.props;
    //const {loading} = this.state;
-   return(
- <div className='shop-page'>
+  return(
+    <div className='shop-page'>
   { /*  <Route exact path={`${match.path}`} component={CollectionsOverview} />
     <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
    */}
@@ -83,7 +85,7 @@ class  ShopPage extends React.Component{
       component ={CollectionPageContainer}/>
 </div>
 );
-};
+//};
 }
 
 
