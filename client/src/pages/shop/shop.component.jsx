@@ -1,11 +1,16 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, lazy, Suspense} from 'react';
 import { Route } from 'react-router-dom';
 import {connect} from 'react-redux';
+import Spinner from '../../components/spinner/spinner.component';
 //import {createStructuredSelector} from 'reselect';
  //import 'firebase/firestore';
 //import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
-import CollectionsOverviewContainer from '../../components/collections-overview/collection-overview.container';
+
+
+/* import CollectionsOverviewContainer from '../../components/collections-overview/collection-overview.container';
 import CollectionPageContainer from '../collection/collection.container';
+ */
+
 
 //import CollectionPage from '../collection/collection.component';
 //import {firestore,convertCollectionsSnapshotToMap} from '../../firebase/firebase.utils';
@@ -18,6 +23,11 @@ import WithSpinner from '../../components/with-spinner/with-spinner.component';
  */
 //const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 //const CollectionPageWithSpinner      = WithSpinner(CollectionPage);
+
+const CollectionsOverviewContainer =lazy(()=>import('../../components/collections-overview/collection-overview.container'));
+const CollectionPageContainer =lazy(()=>import('../collection/collection.container'));
+
+
 const ShopPage =({fetchCollectionsStart,match})=>{
 /* class  ShopPage extends React.Component{
 
@@ -75,14 +85,16 @@ useEffect(()=>{
    */}
  {/* <Route exact path={`${match.path}`} render={(props)=>(<CollectionsOverviewWithSpinner isLoading ={loading}{...props}/>)} />
  <Route path={`${match.path}/:collectionId`} render={(props)=>(<CollectionPageWithSpinner isLoading ={loading}{...props}/>)} /> */}
-<Route 
+<Suspense fallback ={<Spinner/>} >
+  <Route 
        exact path={`${match.path}`} 
       /*  render={(props)=>(<CollectionsOverviewWithSpinner isLoading ={isCollectionFetching}{...props}/>)} */ 
       component ={CollectionsOverviewContainer}/>
-<Route 
+  <Route 
       path={`${match.path}/:collectionId`} 
       /*  render={(props)=>(<CollectionPageWithSpinner isLoading ={!isCollectionLoaded}{...props}/>)}  */
       component ={CollectionPageContainer}/>
+</Suspense>
 </div>
 );
 //};
